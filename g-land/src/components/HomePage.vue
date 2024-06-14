@@ -5,7 +5,7 @@
       </div>
       <div class="content">
         <!-- БЭКГРАУНД -->
-        <img src="@/assets/g-bg.svg" alt="SVG Image" class="svg-image">
+        <img src="@/assets/g-bg.svg" class="svg-image">
       </div>
     </div>
   </template>
@@ -23,7 +23,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, #000000 0%, #7B7068 100%);
+    background: linear-gradient(135deg, #000000 0%, #2F4941 100%);
   }
   
   .navbar {
@@ -36,14 +36,17 @@
   
   .content {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     flex-grow: 1;
   }
   
   .svg-image {
     width: 100%;
-    height: 100%;
+    height: 130vh;
+    min-width: 700px;
+    min-height: auto;
+    
   }
   </style>
   
