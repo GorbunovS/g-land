@@ -11,7 +11,6 @@ Look at my works
             </div>
         </div>
         </div>
-        <b-button squared>Button</b-button>
     </div>
 </template>
 
