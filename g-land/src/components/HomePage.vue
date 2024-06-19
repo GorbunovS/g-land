@@ -1,7 +1,7 @@
 <template>
     <div class="homepage">
       <div class="navbar">
-        <!-- Навигация -->
+        <GreetingComponent></GreetingComponent>
       </div>
       <div class="content">
         <!-- БЭКГРАУНД -->
@@ -11,11 +11,16 @@
   </template>
   
   <script>
+import GreetingComponent from './GreetingComponent.vue';
+
   export default {
     name: 'HomePage',
+    components: {
+      GreetingComponent,
+    },
   };
   </script>
-  
+
   <style scoped>
   .homepage {
     display: flex;

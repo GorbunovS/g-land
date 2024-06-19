@@ -6,15 +6,16 @@
 
 <script>
 import HomePage from './components/HomePage.vue';
-
+import GreetingComponent from './components/GreetingComponent.vue';
+ 
 export default {
   name: 'App',
   components: {
-    HomePage,
+    HomePage,GreetingComponent
   },
 };
 </script>
 
 <style>
 /* Ваши стили */
-</style>
+</style>./components/Greeting.vue./components/GreetingComponent.vue
