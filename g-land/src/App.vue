@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <HomePage />
+    <GreetingComponent/>
   </div>
 </template>
 
