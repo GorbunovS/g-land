@@ -5,16 +5,21 @@
       </div>
       <div class="content">
         <!-- БЭКГРАУНД -->
-        <img src="@/assets/g-bg.svg" class="svg-image">
+        <img :src="image_bg" class="svg-image">
       </div>
     </div>
   </template>
   
   <script>
 import GreetingComponent from './GreetingComponent.vue';
-
+import g_bg from "../assets/g-bg.svg"
   export default {
     name: 'HomePage',
+    data(){
+      return{
+        image_bg:g_bg,
+      }
+    },
     components: {
       GreetingComponent,
     },

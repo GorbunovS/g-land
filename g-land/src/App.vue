@@ -6,10 +6,12 @@
 </template>
 
 <script>
+
 import HomePage from './components/HomePage.vue';
 import GreetingComponent from './components/GreetingComponent.vue';
  
 export default {
+  
   name: 'App',
   components: {
     HomePage,GreetingComponent
