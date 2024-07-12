@@ -21,4 +21,4 @@ export default {
 
 <style>
 /* Ваши стили */
-</style>./components/Greeting.vue./components/GreetingComponent.vue
+</style>
