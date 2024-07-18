@@ -1,11 +1,14 @@
 <template>
   <div class="homepage">
-    <HeaderComponent/>
+    <HeaderComponent />
     <div class="content">
       <div class="greeting-container">
-        <GreetingComponent></GreetingComponent>
+        <GreetingComponent />
       </div>
-      <img :src="image_bg" class="svg-image">
+      <div id="app" class="tile-row">
+        <TileCard />
+      </div>
+      <img :src="image_bg" class="svg-image" />
     </div>
   </div>
 </template>
@@ -14,6 +17,7 @@
 import GreetingComponent from './GreetingComponent.vue';
 import HeaderComponent from './HeaderComponent.vue';
 import g_bg from "../assets/g-bg.svg";
+import TileCard from './TileCard.vue';
 
 export default {
   name: 'HomePage',
@@ -24,7 +28,8 @@ export default {
   },
   components: {
     GreetingComponent,
-    HeaderComponent
+    HeaderComponent,
+    TileCard
   },
 };
 </script>
@@ -40,7 +45,7 @@ export default {
 }
 
 .content {
-  position: relative; /* Добавлено для корректного позиционирования */
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,7 +58,14 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Выравнивание GreetingComponent по центру экрана */
+  height: 100vh;
+}
+
+.tile-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .svg-image {
