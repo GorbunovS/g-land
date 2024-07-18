@@ -6,12 +6,16 @@
         <GreetingComponent />
       </div>
       <div id="app" class="tile-row">
-        <TileCard />
+        <TileCard class="tile-card" />
+        <TileCard class="tile-card" />
+        <TileCard class="tile-card" />
       </div>
+      
       <img :src="image_bg" class="svg-image" />
     </div>
   </div>
 </template>
+
 
 <script>
 import GreetingComponent from './GreetingComponent.vue';
@@ -23,6 +27,7 @@ export default {
   name: 'HomePage',
   data() {
     return {
+
       image_bg: g_bg,
     };
   },
@@ -35,6 +40,25 @@ export default {
 </script>
 
 <style scoped>
+.tile-row {
+  perspective: 1500px; /* Пример значения перспективы */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  transform-style: preserve-3d; /* Сохранение 3D-пространства для дочерних элементов */
+  transform: rotateY(-45deg) rotateZ(15deg) rotateX(65deg); /* Поворот по оси Z и X */
+}
+
+.tile-card {
+  margin: 10px; /* Пример отступов между карточками */
+  width: 200px; /* Пример размера карточки */
+  height: 300px; /* Пример размера карточки */
+  transform-style: preserve-3d; /* Сохранение 3D-пространства для дочерних элементов */
+  transition: transform 0.5s ease; /* Плавное изменение поворота */
+}
+
+
 .homepage {
   display: flex;
   flex-direction: column;
