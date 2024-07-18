@@ -2,20 +2,18 @@
   <div class="homepage">
     <HeaderComponent />
     <div class="content">
-      <div class="greeting-container">
+      <div class="greeting-container" @click="toggleTileRow" v-if="!showTileRow">
         <GreetingComponent />
       </div>
-      <div id="app" class="tile-row">
+      <div id="app" v-if="showTileRow" class="tile-row">
         <TileCard class="tile-card" />
         <TileCard class="tile-card" />
         <TileCard class="tile-card" />
       </div>
-      
       <img :src="image_bg" class="svg-image" />
     </div>
   </div>
 </template>
-
 
 <script>
 import GreetingComponent from './GreetingComponent.vue';
@@ -27,7 +25,7 @@ export default {
   name: 'HomePage',
   data() {
     return {
-
+      showTileRow: false,
       image_bg: g_bg,
     };
   },
@@ -36,6 +34,11 @@ export default {
     HeaderComponent,
     TileCard
   },
+  methods: {
+    toggleTileRow() {
+      this.showTileRow = !this.showTileRow;
+    }
+  }
 };
 </script>
 
@@ -48,7 +51,9 @@ export default {
   flex-wrap: wrap;
   transform-style: preserve-3d; /* Сохранение 3D-пространства для дочерних элементов */
   transform: rotateY(-45deg) rotateZ(15deg) rotateX(65deg); /* Поворот по оси Z и X */
+  margin-top: 20px; /* Добавим небольшой верхний отступ для разделения с svg-image */
 }
+
 
 .tile-card {
   margin: 10px; /* Пример отступов между карточками */
@@ -57,7 +62,6 @@ export default {
   transform-style: preserve-3d; /* Сохранение 3D-пространства для дочерних элементов */
   transition: transform 0.5s ease; /* Плавное изменение поворота */
 }
-
 
 .homepage {
   display: flex;
@@ -83,19 +87,16 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100vh;
-}
-
-.tile-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  cursor: pointer; /* Добавляем указатель мыши для элемента, чтобы подчеркнуть его кликабельность */
 }
 
 .svg-image {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
-  height: 130vh;
-  min-width: 700px;
-  min-height: auto;
+  height: 100%;
+  z-index: -1; /* Чтобы изображение на заднем плане оставалось под остальными элементами */
 }
 </style>
