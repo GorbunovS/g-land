@@ -54,6 +54,7 @@ export default {
   align-items: center;
   padding: 10px;
   transition: all 0.5s ease;
+  background-color: black;
 }
 
 .nav-items {

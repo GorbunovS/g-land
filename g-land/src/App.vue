@@ -1,20 +1,21 @@
 <template>
   <div id="app">
+    <HeaderComponent/>
     <HomePage />
-    <GreetingComponent/>
   </div>
 </template>
 
 <script>
 
+import HeaderComponent from './components/HeaderComponent.vue';
 import HomePage from './components/HomePage.vue';
-import GreetingComponent from './components/GreetingComponent.vue';
+// import GreetingComponent from './components/GreetingComponent.vue';
  
 export default {
   
   name: 'App',
   components: {
-    HomePage,GreetingComponent
+    HomePage,HeaderComponent
   },
 };
 </script>

@@ -12,7 +12,7 @@
         <span v-if="card.text" class="tile-text">{{ card.text }}</span>
         <!-- Добавляем три серых прямоугольника только для черной карточки -->
         <div v-if="card.color === 'tile-black' && hover" class="gray-rectangles">
-          <div class="gray-rectangle-one" ></div>
+          <div class="gray-rectangle-one"></div>
           <div class="gray-rectangle-two"></div>
           <div class="gray-rectangle-three"></div>
         </div>
@@ -21,18 +21,18 @@
   </div>
 </template>
 
-
 <script>
 export default {
   data() {
     return {
       hover: false,
-      expandedIndex: -1, // Индекс расширенной карточки, изначально -1 (никакая не расширена)
+      expandedIndex: -1,
       rotation: { x: 0, y: 0, z: 0 },
+      hoverIntervalId: null,
       cards: [
-        { color: 'tile-green', text: 'UX/UI' },
-        { color: 'tile-white', text: 'UX/UI' },
-        { color: 'tile-black', text: 'UX/UI' }
+        { color: 'tile-green', text: 'Frontend' },
+        { color: 'tile-white', text: 'Frontend' },
+        { color: 'tile-black', text: 'Frontend' }
       ]
     };
   },
@@ -51,11 +51,6 @@ export default {
       const baseTransform = this.hover ? `translateZ(${index * 10}px)` : 'translateZ(0px)';
       const expandedTransform = isExpanded ? 'scale(2) translateZ(0)' : baseTransform;
 
-      let backgroundColor = '';
-      if (index === 0) {
-        backgroundColor = this.hover ? 'green' : 'transparent';
-      } 
-
       let boxShadow = '';
       if (card.color === 'tile-green' && this.hover) {
         boxShadow = '0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3)';
@@ -64,29 +59,43 @@ export default {
       return {
         transform: expandedTransform,
         opacity: this.hover || isExpanded || index === 0 ? 1 : 0,
-        borderRadius: this.hover ? '15px' : '0',
-        backgroundColor: backgroundColor,
+        borderRadius: this.hover ? '15px' : '1',
         zIndex: isExpanded ? 2 : 1,
         boxShadow: boxShadow
       };
     },
     expandCard(index) {
-  if (this.cards[index].color === 'tile-black') {
-    this.expandedIndex = this.expandedIndex === index ? -1 : index;
-    if (this.expandedIndex !== -1) {
-      this.rotation.x = 0;
-      this.rotation.y = 0;
-      document.body.classList.add('fullscreen');
-    } else {
-      this.rotation.x = 50;
-      this.rotation.y = 0;
-      document.body.classList.remove('fullscreen');
+      if (this.cards[index].color === 'tile-black') {
+        this.expandedIndex = this.expandedIndex === index ? -1 : index;
+        if (this.expandedIndex !== -1) {
+          this.rotation.x = 0;
+          this.rotation.y = 0;
+          document.body.classList.add('fullscreen');
+        } else {
+          this.rotation.x = 50;
+          this.rotation.y = 0;
+          document.body.classList.remove('fullscreen');
+        }
+      } else {
+        this.expandedIndex = this.expandedIndex === index ? -1 : index;
+      }
+    },
+    startHoverEffect() {
+      this.hoverIntervalId = setInterval(() => {
+        this.hover = true;
+        setTimeout(() => {
+          this.hover = false;
+        }, 500); // Устанавливаем hover в false через 0.5 секунды
+      }, 10000); // Повторяем каждые 3 секунды
     }
-  } else {
-    this.expandedIndex = this.expandedIndex === index ? -1 : index;
-  }
-}
-
+  },
+  mounted() {
+    this.startHoverEffect();
+  },
+  beforeUnmount() {
+    if (this.hoverIntervalId) {
+      clearInterval(this.hoverIntervalId);
+    }
   }
 };
 </script>
@@ -125,6 +134,7 @@ export default {
 .tile-green {
   background-color: rgba(199, 231, 203, 0.128); /* Начально прозрачный фон */
   box-sizing: border-box; /* Устанавливаем box-sizing для корректного учета границы */
+  border-radius: 15px;
 
   /* Градиентная линия */
   border-image: linear-gradient(to right, white, rgb(104, 104, 104), white) 1;
